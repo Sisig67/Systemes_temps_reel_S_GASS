@@ -30,6 +30,7 @@ public class TriRecursif {
                 // System.out.println(this.arr[0]);
                 return;
             }
+
             int mid = this.arr.length / 2;
             int[] left = new int[mid];
             int[] right = new int[this.arr.length - mid];
@@ -40,6 +41,7 @@ public class TriRecursif {
             for (int i = mid; i < this.arr.length; i++) {
                 right[i - mid] = this.arr[i];
             }
+
             Tri leftThread = new Tri(left);
             Tri rightThread = new Tri(right);
             leftThread.start();
