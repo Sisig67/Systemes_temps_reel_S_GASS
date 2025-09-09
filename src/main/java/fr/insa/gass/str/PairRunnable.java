@@ -20,14 +20,21 @@ public class PairRunnable implements Runnable {
                 System.out.println(nom + ": " + i);
             }
         }
-        System.out.println("Fin du thread");
+        System.out.println("Fin du thread " + nom);
     }
 
     public static void main(String[] args) {
-        PairRunnable pairRunnable = new PairRunnable();
+        PairRunnable pairRunnable = new PairRunnable("Thread 1");
         Thread thread = new Thread(pairRunnable);
         thread.start();
         Thread thread2 = new Thread(new PairRunnable("Thread 2"));
         thread2.start();
+        try {
+            thread.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Fin du main");
     }
 }
